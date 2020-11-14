@@ -39,14 +39,15 @@ def run_timelapse(log, args):
         return
 
     os.chdir(output_dir)
+    current_frame = 1001
 
     try:
         while current_time < end_time:
             current_time = datetime.datetime.now()
-            output_file_name = "%s_%s.jpg" % (args.image_name, current_time.strftime("%H%M%S_%d%m%y"))
+            output_file_name = "{name}.{frame}.jpg".format(name=args.image_name, frame=current_frame)
             log.info("Taking picture: %s", output_file_name)
 
-            command = ["raspistill", "-v", "-o", output_file_name]
+            command = ["raspistill", "--timeout", 1, "-o", output_file_name]
             p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = p.communicate()
 
@@ -56,6 +57,7 @@ def run_timelapse(log, args):
                 break
             else:
                 time.sleep(args.interval * 60)
+                current_frame += 1
 
     except KeyboardInterrupt:
         os.chdir(original_dir)
