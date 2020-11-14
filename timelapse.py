@@ -68,7 +68,6 @@ def main():
     log = logging.getLogger("timelapse")
 
     logging.root.handlers = []
-    # logging.basicConfig(level=logging.NOTSET)
 
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.DEBUG)
