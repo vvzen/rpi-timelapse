@@ -47,7 +47,7 @@ def run_timelapse(log, args):
             output_file_name = "{name}.{frame}.jpg".format(name=args.image_name, frame=current_frame)
             log.info("Taking picture: %s", output_file_name)
 
-            command = ["raspistill", "--timeout", 1, "-o", output_file_name]
+            command = ["raspistill", "--timeout", "1", "-o", output_file_name]
             p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = p.communicate()
 
