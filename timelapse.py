@@ -57,11 +57,16 @@ def run_timelapse(log, args):
             else:
                 time.sleep(args.interval * 60)
 
+    except KeyboardInterrupt:
+        os.chdir(original_dir)
+        log.info("User pressed CTRL+C, exiting..")
+
     except Exception:
         os.chdir(original_dir)
         raise
 
-    log.info("Timelapse finished.")
+    current_time = datetime.datetime.now()
+    log.info("Timelapse finished at %s.", current_time)
 
 def main():
 
