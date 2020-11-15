@@ -13,7 +13,7 @@ def parse_args():
 
     parser.add_argument("--interval", type=int, default=15, help="Interval for taking a picture (expressed in minutes)")
     parser.add_argument("--length", type=int, default=8 * 60, help="The timelapse will be running for that much time (expressed in minutes)")
-    parser.add_argument("--image-name", type=str, default="pi_timelapse", required=False, help="The timelapse will be running for that much time (expressed in minutes)")
+    parser.add_argument("--image-name", type=str, default="pi_timelapse", required=False, help="Name (without extension) of the output images")
     parser.add_argument("output_dir", type=str, help="Where to save the images")
 
     args = parser.parse_args()
